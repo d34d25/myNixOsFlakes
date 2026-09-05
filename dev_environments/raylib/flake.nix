@@ -7,18 +7,22 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  }: let
+  outputs = {self, nixpkgs, ...}:
+  let
+
     system = "x86_64-linux";
-  in {
+
+  in
+  {
+
     devShells."${system}".default = let
+
       pkgs = import nixpkgs {
         inherit system;
       };
+
     in
+
       pkgs.mkShell {
         packages = [
 
