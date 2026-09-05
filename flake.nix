@@ -1,5 +1,5 @@
 {
-  description = "flake for system programs";
+  description = "flake for system, divided into modules";
 
   inputs = {
 
@@ -9,11 +9,33 @@
 
   };
 
-  outputs = {self, nixpkgs-unstable, nixpkgs-stable, ...}  @inputs:{
+  outputs = {self, nixpkgs-unstable, nixpkgs-stable, ...}  @inputs:
+  let
+
+    target_system = "x86_64-linux";
+
+    stable = import inputs.nixpkgs-stable {
+
+        system = target_system;
+
+        config.allowUnfree = true;
+
+    };
+
+    unstable = import inputs.nixpkgs-unstable {
+
+        system = target_system;
+
+        config.allowUnfree = true;
+
+    };
+
+  in
+  {
 
     nixosConfigurations.dision = nixpkgs-stable.lib.nixosSystem {
 
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs stable unstable;};
 
       modules = [
 

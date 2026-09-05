@@ -1,23 +1,5 @@
-{pkgs, config, inputs, ...}:
-let
+{stable, unstable, ...}:
 
-    stable = import inputs.nixpkgs-stable {
-
-        system = pkgs.system;
-
-        config.allowUnfree = true;
-
-    };
-
-    unstable = import inputs.nixpkgs-unstable {
-
-        system = pkgs.system;
-
-        config.allowUnfree = true;
-
-    };
-
-in
 {
 
     environment.systemPackages = [
