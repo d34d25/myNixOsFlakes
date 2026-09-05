@@ -18,40 +18,10 @@
       modules = [
 
         ./configuration.nix
+        ./myModules/sys-settings.nix
+        ./myModules/nvidia-drivers.nix
+        ./myModules/programs.nix
 
-        ({pkgs, config, ...}:
-        let
-
-          stable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
-
-          unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
-
-        in
-        {
-
-          networking.firewall.enable = true;
-
-          services.xserver.videoDrivers = ["nvidia"];
-
-          hardware.nvidia = {
-
-              open = true;
-
-              package = config.boot.kernelPackages.nvidiaPackages.production;
-
-          };
-
-          nix.settings.experimental-features = ["nix-command" "flakes"];
-
-          environment.systemPackages = [
-
-            stable.git
-            stable.htop
-            stable.fastfetch
-
-          ];
-
-        })
       ];
 
     };
