@@ -15,7 +15,7 @@
 
             vscodeExtensions = [
 
-                stable.vscode-extensions.ms-vscode.cpptools-extension-pack
+                stable.vscode-extensions.ms-vscode.cpptools
 
             ];
 

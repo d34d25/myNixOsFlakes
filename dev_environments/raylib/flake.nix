@@ -21,6 +21,13 @@
     in
       pkgs.mkShell {
         packages = [
+
+          #my additions
+          pkgs.raylib
+          pkgs.gcc
+          pkgs.gdb
+          #-------------
+
           pkgs.libGL
 
           # X11 dependencies
